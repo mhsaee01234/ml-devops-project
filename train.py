@@ -28,5 +28,4 @@ print("Model accuracy:", accuracy)
 
 # Save model
 joblib.dump(model, "model.pkl")
-
 print("Model saved successfully!")
