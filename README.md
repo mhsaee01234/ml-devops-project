@@ -60,3 +60,24 @@ The project uses the Iris dataset and a Decision Tree Classifier to make predict
                 │     Render      │
                 │    Deployment   │
                 └─────────────────┘
+
+## 📁 Project Structure
+
+```text
+ml-devops-project/
+│
+├── .github/
+│   └── workflows/
+│       └── ci.yml
+│
+├── tests/
+│   └── test_app.py
+│
+├── app.py
+├── train.py
+├── model.pkl
+├── requirements.txt
+├── Dockerfile
+├── .dockerignore
+├── .gitignore
+└── README.md
