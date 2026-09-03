@@ -4,22 +4,36 @@ import os
 
 app = Flask(__name__)
 
-# Load trained model
 model = joblib.load("model.pkl")
+
 
 @app.route("/")
 def home():
     return "ML Model API is running!"
 
+
 @app.route("/predict", methods=["POST"])
 def predict():
     data = request.get_json()
 
-    prediction = model.predict([data["features"]])
+    if not data or "features" not in data:
+        return jsonify({
+            "error": "Please provide 'features' in the request."
+        }), 400
+
+    features = data["features"]
+
+    if len(features) != 4:
+        return jsonify({
+            "error": "Exactly 4 features are required."
+        }), 400
+
+    prediction = model.predict([features])
 
     return jsonify({
         "prediction": int(prediction[0])
     })
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
